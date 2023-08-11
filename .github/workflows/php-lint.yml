@@ -24,9 +24,6 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-php-
 
-    - name: Create .env file
-      run: echo "${{ secrets.ENV_FILE }}" > .env
-
     - name: Update dependencies
       run: composer update
 
