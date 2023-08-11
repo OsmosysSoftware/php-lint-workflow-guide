@@ -1,9 +1,9 @@
 name: PHP Coding Standards
 on:
   push:
-    branches: [ main ]
+    branches: [ main, dev ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, release ]
 
 permissions:
   contents: read
@@ -23,12 +23,6 @@ jobs:
         key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
           ${{ runner.os }}-php-
-
-    - name: Create .env file
-      run: echo "${{ secrets.ENV_FILE }}" > .env
-
-    - name: Update dependencies
-      run: composer update
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
